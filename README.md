@@ -1,7 +1,7 @@
 # pipelinewise-tap-google-analytics
 
-[![PyPI version](https://badge.fury.io/py/pipelinewise-tap-kafka.svg)](https://badge.fury.io/py/pipelinewise-tap-google-analytics)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pipelinewise-tap-kafka.svg)](https://pypi.org/project/pipelinewise-tap-google-analytics/)
+[![PyPI version](https://badge.fury.io/py/pipelinewise-tap-google-analytics.svg)](https://badge.fury.io/py/pipelinewise-tap-google-analytics)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pipelinewise-tap-google-analytics.svg)](https://pypi.org/project/pipelinewise-tap-google-analytics/)
 [![License: MIT](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://opensource.org/licenses/GPL-3.0)
 
 This is a [Singer](https://singer.io) tap that reads data from Kafka topic and produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
@@ -16,7 +16,7 @@ If you want to run this [Singer Tap](https://singer.io) independently please rea
 
 ## Usage
 
-This tap:
+This tap is a fork of [Meltano's Google Analytics tap](https://gitlab.com/meltano/tap-google-analytics) that:
 
 - Pulls raw data from the [Google Analytics Reporting API](https://developers.google.com/analytics/devguides/reporting/core/v4/).
 - Supports generating as many reports as the user of the tap wants (following Google's limit of 7 dimensions and 10 metrics per report).

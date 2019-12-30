@@ -4,13 +4,13 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pipelinewise-tap-google-analytics.svg)](https://pypi.org/project/pipelinewise-tap-google-analytics/)
 [![License: MIT](https://img.shields.io/badge/License-GPLv3-yellow.svg)](https://opensource.org/licenses/GPL-3.0)
 
-This is a [Singer](https://singer.io) tap that reads data from Kafka topic and produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
+This is a [Singer](https://singer.io) tap that reads data from Google Analytics and produces JSON-formatted data following the [Singer spec](https://github.com/singer-io/getting-started/blob/master/SPEC.md).
 
 This is a [PipelineWise](https://transferwise.github.io/pipelinewise) compatible target connector.
 
 ## How to use it
 
-The recommended method of running this tap is to use it from [PipelineWise](https://transferwise.github.io/pipelinewise). When running it from PipelineWise you don't need to configure this tap with JSON files and most of things are automated. Please check the related documentation at [Kafka](https://transferwise.github.io/pipelinewise/connectors/taps/kafka.html)
+The recommended method of running this tap is to use it from [PipelineWise](https://transferwise.github.io/pipelinewise). When running it from PipelineWise you don't need to configure this tap with JSON files and most of things are automated. Please check the related documentation at [Google Analytics](https://transferwise.github.io/pipelinewise/connectors/taps/google-analytics.html)
 
 If you want to run this [Singer Tap](https://singer.io) independently please read further.
 

@@ -25,7 +25,7 @@ NON_FATAL_ERRORS = [
 
 # Silence the discovery_cache errors
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
-LOGGER = singer.get_logger()
+LOGGER = singer.get_logger('tap_google_analytics')
 
 
 def error_reason(e):

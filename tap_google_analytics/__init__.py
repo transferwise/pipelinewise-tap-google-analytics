@@ -17,7 +17,7 @@ REQUIRED_CONFIG_KEYS = [
     "view_id"
 ]
 
-LOGGER = singer.get_logger()
+LOGGER = singer.get_logger('tap_google_analytics')
 
 def discover(config):
     # Load the reports json file

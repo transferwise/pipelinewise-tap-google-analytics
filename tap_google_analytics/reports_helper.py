@@ -3,7 +3,7 @@ import sys
 
 from tap_google_analytics.ga_client import GAClient
 
-LOGGER = singer.get_logger()
+LOGGER = singer.get_logger('tap_google_analytics')
 
 class ReportsHelper:
     def __init__(self, config, reports_definition):

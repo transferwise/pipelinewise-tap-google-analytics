@@ -91,6 +91,7 @@ class GAClient:
 
     def initialize_analyticsreporting(self):
         """Initializes an Analytics Reporting API V4 service object.
+
         Returns:
             An authorized Analytics Reporting API V4 service object.
         """
@@ -100,10 +101,13 @@ class GAClient:
         """
         Fetch the valid (dimensions, metrics) for the Analytics Reporting API
          and their data types.
+
         Returns:
           A map of (dimensions, metrics) hashes
+
           Each available dimension can be found in dimensions with its data type
             as the value. e.g. dimensions['ga:userType'] == STRING
+
           Each available metric can be found in metrics with its data type
             as the value. e.g. metrics['ga:sessions'] == INTEGER
         """
@@ -229,6 +233,7 @@ class GAClient:
                           giveup=is_fatal_error)
     def query_api(self, report_definition, pageToken=None):
         """Queries the Analytics Reporting API V4.
+
         Returns:
             The Analytics Reporting API V4 response.
         """
@@ -249,8 +254,10 @@ class GAClient:
 
     def process_response(self, response):
         """Processes the Analytics Reporting API V4 response.
+
         Args:
             response: An Analytics Reporting API V4 response.
+
         Returns: (nextPageToken, results)
             nextPageToken: The next Page Token
              If it is not None then the maximum pageSize has been reached

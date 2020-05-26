@@ -1,11 +1,10 @@
 [
-  { "name" : "website_overview",
-    "dimensions" :
-    [
+  {
+    "name": "website_overview",
+    "dimensions": [
       "ga:date"
     ],
-    "metrics" :
-    [
+    "metrics": [
       "ga:users",
       "ga:newUsers",
       "ga:sessions",
@@ -18,16 +17,15 @@
       "ga:exitRate"
     ]
   },
-  { "name" : "traffic_sources",
-    "dimensions" :
-    [
+  {
+    "name": "traffic_sources",
+    "dimensions": [
       "ga:date",
       "ga:source",
       "ga:medium",
       "ga:socialNetwork"
     ],
-    "metrics" :
-    [
+    "metrics": [
       "ga:users",
       "ga:newUsers",
       "ga:sessions",
@@ -40,15 +38,14 @@
       "ga:exitRate"
     ]
   },
-  { "name" : "pages",
-    "dimensions" :
-    [
+  {
+    "name": "pages",
+    "dimensions": [
       "ga:date",
       "ga:hostname",
       "ga:pagePath"
     ],
-    "metrics" :
-    [
+    "metrics": [
       "ga:pageviews",
       "ga:uniquePageviews",
       "ga:avgTimeOnPage",
@@ -59,9 +56,9 @@
       "ga:exitRate"
     ]
   },
-  { "name" : "locations",
-    "dimensions" :
-    [
+  {
+    "name": "locations",
+    "dimensions": [
       "ga:date",
       "ga:continent",
       "ga:subContinent",
@@ -70,8 +67,7 @@
       "ga:metro",
       "ga:city"
     ],
-    "metrics" :
-    [
+    "metrics": [
       "ga:users",
       "ga:newUsers",
       "ga:sessions",
@@ -84,46 +80,60 @@
       "ga:exitRate"
     ]
   },
-  { "name" : "monthly_active_users",
-    "dimensions" :
-    [
+  {
+    "name": "monthly_active_users",
+    "dimensions": [
       "ga:date"
     ],
-    "metrics" :
-    [
+    "metrics": [
       "ga:30dayUsers"
     ]
   },
-  { "name" : "weekly_active_users",
-    "dimensions" :
-    [
+  {
+    "name": "four_weekly_active_users",
+    "dimensions": [
       "ga:date"
     ],
-    "metrics" :
-    [
+    "metrics": [
+      "ga:28dayUsers"
+    ]
+  },
+  {
+    "name": "two_weekly_active_users",
+    "dimensions": [
+      "ga:date"
+    ],
+    "metrics": [
+      "ga:14dayUsers"
+    ]
+  },
+  {
+    "name": "weekly_active_users",
+    "dimensions": [
+      "ga:date"
+    ],
+    "metrics": [
       "ga:7dayUsers"
     ]
   },
-  { "name" : "daily_active_users",
-    "dimensions" :
-    [
+  {
+    "name": "daily_active_users",
+    "dimensions": [
       "ga:date"
     ],
-    "metrics" :
-    [
+    "metrics": [
       "ga:1dayUsers"
     ]
   },
-  { "name" : "devices",
-    "dimensions" :
-    [
+  {
+    "name": "devices",
+    "dimensions": [
       "ga:date",
       "ga:deviceCategory",
       "ga:operatingSystem",
       "ga:browser"
     ],
-    "metrics" :
-    [
+    "metrics": [
       "ga:users",
       "ga:newUsers",
       "ga:sessions",

@@ -2,7 +2,7 @@
 from setuptools import setup
 
 with open('README.md') as f:
-      long_description = f.read()
+    long_description = f.read()
 
 setup(
     name="pipelinewise-tap-google-analytics",
@@ -20,6 +20,7 @@ setup(
         "pipelinewise-singer-python==1.*",
         "google-api-python-client==1.7.9",
         "oauth2client==4.1.3",
+        "backoff==1.3.2"
     ],
     entry_points="""
         [console_scripts]

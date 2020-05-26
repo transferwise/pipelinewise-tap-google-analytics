@@ -15,6 +15,7 @@ class ReportsHelper:
     def generate_catalog(self):
         """
         Generate the catalog based on the reports definition
+
         Assumptions:
         + All streams and attributes are automatically included
         + All dimensions are also defined as keys
@@ -27,18 +28,25 @@ class ReportsHelper:
            to the schema.
           This is important for defining the date range the records are for,
            especially when 'ga:date' is not part of the requested Dimensions.
+
           If 'ga:date' has not been added as one of the Dimensions, then the
            {start_date, end_date} attributes are also added as keys.
+
           For example, if a user requests to see user stats by device or by source,
            the {start_date, end_date} can be used as part of the key uniquelly
            identifying the generated stats.
+
           That way we can properly identify and update rows over overlapping
            runs of the tap.
+
         + The available (dimensions, metrics) and their data type are dynamically
           fetched using the GAClient.
+
           We use those lists to validate the dimension or metric names requested
+
           We also use those lists to set the data type for those attributes and
           cast the values accordingly (in case of integer or numeric values)
+
         Returns:
             A valid Singer.io Catalog.
         """

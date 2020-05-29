@@ -20,7 +20,7 @@ setup(
         "pipelinewise-singer-python==1.*",
         "google-api-python-client==1.7.9",
         "oauth2client==4.1.3",
-        "backoff==1.3.2"
+        "backoff==1.8.0"
     ],
     entry_points="""
         [console_scripts]

@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: PipelineWise Slack channel
+  - name: PipelineWise Community Slack channel
     url: https://singer-io.slack.com/messages/pipelinewise
-    about: PipelineWise community Slack channel
+    about: Open discussion about PipelineWise

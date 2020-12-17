@@ -235,6 +235,34 @@ For example, if you want to extract user stats per day in a users_per_day stream
 You can check [tap-google-analytics/defaults/default_report_definition.json](tap-google-analytics/defaults/default_report_definition.json) for a more lengthy, detailed example.
 
 
+##### Segments
+
+If you want to use the `ga:segment` dimension, you must specify the segment IDs in your reports.json stream / report config:
+
+```
+[
+  {
+    "name": "acquisition",
+    "dimensions": [
+      "ga:date",
+      "ga:segment",
+      "ga:channelGrouping"
+    ],
+    "metrics": [
+      "ga:users",
+      "ga:newUsers",
+      "ga:sessions"
+    ],
+    "segments": [
+      "gaid::-1",
+      "gaid::U7LSsrWRTq6JIIS8G8brrQ"
+    ]
+  }
+]
+```
+
+Segment IDs can be found with the [GA Query explorer](https://ga-dev-tools.appspot.com/query-explorer). The account configured for authentication must either own the segment, or have "Collaborate" access to the GA view as well as the segment itself having its Segment Availability set to "Collaborators and I can apply/edit Segment in this View".
+
 ## Run
 
 ```bash

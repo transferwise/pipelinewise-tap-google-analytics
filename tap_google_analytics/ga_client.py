@@ -5,6 +5,8 @@ import json
 import singer
 import socket
 
+from datetime import datetime, timedelta
+
 from apiclient.discovery import build
 from apiclient.errors import HttpError
 
@@ -181,17 +183,25 @@ class GAClient:
     def process_stream(self, stream):
         try:
             records = []
-            report_definition = self.generate_report_definition(stream)
-            nextPageToken = None
+            start_date = datetime.strptime(self.start_date, "%Y-%m-%d")
+            end_date = start_date + timedelta(days=1)
 
-            while True:
-                response = self.query_api(report_definition, nextPageToken)
-                (nextPageToken, results) = self.process_response(response)
-                records.extend(results)
+            while end_date.date() <= datetime.now().date():
+                LOGGER.info(f"Start syncing {start_date.strftime('%Y-%m-%d')}")
+                report_definition = self.generate_report_definition(stream)
+                nextPageToken = None
 
-                # Keep on looping as long as we have a nextPageToken
-                if nextPageToken is None:
-                    break
+                while True:
+                    response = self.query_api(report_definition, nextPageToken)
+                    (nextPageToken, results) = self.process_response(response)
+                    records.extend(results)
+
+                    # Keep on looping as long as we have a nextPageToken
+                    if nextPageToken is None:
+                        break
+
+                start_date = end_date
+                end_date += timedelta(days=1)
 
             return records
         except HttpError as e:

@@ -6,7 +6,7 @@ with open('README.md') as f:
 
 setup(
     name="pipelinewise-tap-google-analytics",
-    version="1.1.1",
+    version="1.1.2",
     description="Singer.io tap for extracting data from the Google Analytics Reporting API",
     long_description=long_description,
     long_description_content_type='text/markdown',

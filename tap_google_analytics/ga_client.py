@@ -144,7 +144,9 @@ class GAClient:
         """
         try:
             if type == 'dimension':
-                if attribute.startswith(('ga:dimension', 'ga:customVarName', 'ga:customVarValue')):
+                if attribute == 'ga:segment':
+                    return 'string'
+                elif attribute.startswith(('ga:dimension', 'ga:customVarName', 'ga:customVarValue')):
                     # Custom Google Analytics Dimensions that are not part of
                     #  self.dimensions_ref. They are always strings
                     return 'string'
@@ -225,6 +227,12 @@ class GAClient:
         for metric in stream['metrics']:
             report_definition['metrics'].append({"expression": metric.replace("ga_","ga:")})
 
+        # Add segmentIds to the request if the stream contains them
+        if 'segments' in stream:
+            report_definition['segments'] = []
+            for segmentId in stream['segments']:
+                report_definition['segments'].append({'segmentId': segmentId})
+
         return report_definition
 
     @backoff.on_exception(backoff.expo,
@@ -237,18 +245,23 @@ class GAClient:
         Returns:
             The Analytics Reporting API V4 response.
         """
+        body = {
+            'reportRequests': [
+            {
+                'viewId': self.view_id,
+                'dateRanges': [{'startDate': self.start_date, 'endDate': self.end_date}],
+                'pageSize': '1000',
+                'pageToken': pageToken,
+                'metrics': report_definition['metrics'],
+                'dimensions': report_definition['dimensions']
+            }]
+        }
+
+        if 'segments' in report_definition:
+            body['reportRequests'][0]['segments'] = report_definition['segments']
+
         return self.analytics.reports().batchGet(
-            body={
-                'reportRequests': [
-                {
-                    'viewId': self.view_id,
-                    'dateRanges': [{'startDate': self.start_date, 'endDate': self.end_date}],
-                    'pageSize': '1000',
-                    'pageToken': pageToken,
-                    'metrics': report_definition['metrics'],
-                    'dimensions': report_definition['dimensions'],
-                }]
-            },
+            body=body,
             quotaUser=self.quota_user
         ).execute()
 

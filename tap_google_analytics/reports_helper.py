@@ -88,14 +88,20 @@ class ReportsHelper:
 
                 table_key_properties.append(dimension)
 
-                metadata.append({
+                dimension_metadata = {
                     "metadata": {
                         "inclusion": "automatic",
                         "selected-by-default": True,
                         "ga_type": 'dimension'
                     },
                     "breadcrumb": ["properties", dimension]
-                })
+                }
+
+                # Add report segments as metadata for the ga:segment dimension
+                if dimension == 'ga_segment':
+                    dimension_metadata['metadata']['segments'] = report['segments']
+
+                metadata.append(dimension_metadata)
 
             # Add the metrics to the schema
             for metric in report['metrics']:
@@ -170,7 +176,9 @@ class ReportsHelper:
                 LOGGER.critical("'{}' has too many dimensions defined. GA reports can have maximum 7 dimensions.".format(name))
                 sys.exit(1)
 
-            self.validate_dimensions(dimensions)
+            segments = report['segments'] if 'segments' in report else None
+
+            self.validate_dimensions(dimensions, segments)
             self.validate_metrics(metrics)
 
             # ToDo: We should also check that the given metrics can be used
@@ -178,10 +186,16 @@ class ReportsHelper:
             # Not all dimensions and metrics can be queried together. Only certain
             #  dimensions and metrics can be used together to create valid combinations.
 
-    def validate_dimensions(self, dimensions):
+    def validate_dimensions(self, dimensions, segments):
         # check that all the dimensions are proper Google Analytics Dimensions
         for dimension in dimensions:
-            if not dimension.startswith(('ga:dimension', 'ga:customVarName', 'ga:customVarValue')) \
+            # check segments have been provided if 'ga:segment' dimension exists
+            if dimension == 'ga:segment' and len(segments) > 0:
+                continue
+            elif dimension == 'ga:segment' and segments is None:
+                LOGGER.critical("'{}' requires segments to be specified for this report".format(dimension))
+                sys.exit(1)
+            elif not dimension.startswith(('ga:dimension', 'ga:customVarName', 'ga:customVarValue', 'ga:segment')) \
                and dimension not in self.client.dimensions_ref:
                 LOGGER.critical("'{}' is not a valid Google Analytics dimension".format(dimension))
                 LOGGER.info("For details see https://developers.google.com/analytics/devguides/reporting/core/dimsmets")
@@ -217,6 +231,8 @@ class ReportsHelper:
 
             if ga_type == 'dimension':
                 report['dimensions'].append(attribute)
+                if attribute == 'ga_segment':
+                    report['segments'] = singer.metadata.get(stream_metadata, ('properties', attribute), "segments")
             elif ga_type == 'metric':
                 report['metrics'].append(attribute)
 
